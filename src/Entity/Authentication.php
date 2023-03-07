@@ -1,14 +1,15 @@
 <?php
 
-class Authentication {
+class Authentication
+{
 
     private $id;
 
-    var $login;
+    private $login;
 
-    var $password;
+    private $password;
 
-    var $customer_id;
+    private $customer_id;
 
     /**
      * @param $id
@@ -35,7 +36,7 @@ class Authentication {
     /**
      * @param mixed $id
      */
-    public function id($id) : Authentication
+    public function id($id): Authentication
     {
         $this->id = $id;
         return $this;
@@ -54,7 +55,7 @@ class Authentication {
      * @param mixed $login
      */
 
-    public function login($login) : Authentication
+    public function login($login): Authentication
     {
         $this->login = $login;
         return $this;
@@ -71,7 +72,7 @@ class Authentication {
     /**
      * @param mixed $password
      */
-    public function password($password) : Authentication
+    public function password($password): Authentication
     {
         $this->password = $password;
         return $this;
@@ -88,7 +89,7 @@ class Authentication {
     /**
      * @param mixed $customer_id
      */
-    public function customerID($customer_id) : Authentication
+    public function customerID($customer_id): Authentication
     {
         $this->customer_id = $customer_id;
         return $this;
