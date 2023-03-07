@@ -7,15 +7,15 @@ body{
 /* Police Creation */
 @font-face{
     font-family: 'Rubik';
-    src: url(./font/Rubik-Regular.ttf);
+    src: url(../font/Rubik-Regular.ttf);
 }
 @font-face {
     font-family: 'Homenaje';
-    src: url(./font/Homenaje-Regular.ttf);
+    src: url(../font/Homenaje-Regular.ttf);
 }
 @font-face {
     font-family: 'Hubballi';
-    src: url(./font/Hubballi-Regular.ttf);
+    src: url(../font/Hubballi-Regular.ttf);
 }
 /* Nav */
 nav{
@@ -48,9 +48,8 @@ nav{
 }
 /* Header */
 header{
-    background-image:url(./images/bg_header.webp);
-    height: 60vh;
-    background-repeat: no-repeat;
+    height: 55vh;
+    background: linear-gradient(to bottom, transparent, #40363C), url(../images/banner.jpg) no-repeat;
     background-size: cover;
 }
 #site-presentation{
