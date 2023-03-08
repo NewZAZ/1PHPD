@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Flixify</title>
 </head>
 <body>
     <header>
         <div class="bg"></div>
         <nav>
-            <h1 id="logo">Flixify</h1>
+            <a href="index.html">
+                <h1 id="logo">Flixify</h1>
+            </a>
             <a class="rubik bold">Catégories</a>
-            <a class="rubik bold">FAQ</a>
+            <a class="rubik bold" href="faq.html">AVIS</a>
             <div class="flex-column">
-                <a class="rubik bold">LOGIN</a>
-                <a id="sign_up">SIGN UP</a>
+                <a class="rubik bold" href="login.html">LOGIN</a>
+                <a id="sign_up" href="signup.html">SIGN UP</a>
             </div>
         </nav>
     </header>
+    <div id="search">
+        <label>Recherchez votre film ici !</label><br>
+        <input type="search" id="input-search" placeholder="Recherchez votre film">
+    </div>
     <main>
         <article id="site-presentation">
             <h2>Présentation du site</h2>
