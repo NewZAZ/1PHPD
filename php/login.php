@@ -21,7 +21,7 @@
             <input type="password" required name="password">
             <label>Mot de passe</label>
         </div>
-        <input type="submit" class="btn" name="submit">Se connecter</input>
+        <input type="submit" class="btn" name="submit" value="Se connecter">
     </form>
 </div>
 </body>
@@ -50,7 +50,7 @@ if(isset($_POST["submit"])){
     $result = $query->fetchAll();
 
     if(count($result) == 0){
-        echo "<p>Le compte n''existe pas</p";
+        echo "<p>Le compte n'éxiste pas</p";
         return;
     }
 
@@ -61,4 +61,6 @@ if(isset($_POST["submit"])){
     header("Location: index.php");
 }
 
+
+?>
 

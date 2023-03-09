@@ -31,8 +31,6 @@
             18 ans</p>
         <p class="texte">Je suis une utilisatrice de Flixify depuis quelques mois maintenant et je dois dire que je suis très satisfaite de cette plateforme de location de films en ligne. Le choix de films est excellent et les tarifs de location sont très raisonnables. De plus, la qualité de diffusion est toujours au rendez-vous, ce qui rend l'expérience de visionnage très agréable. Je recommande vivement Flixify à tous les amateurs de films !</p>
     </article>
-
-
 </section>
 </body>
 </html>

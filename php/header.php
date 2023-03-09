@@ -11,10 +11,10 @@
             <h1 id="logo">Flixify</h1>
         </a>
         <a class="rubik bold">Catégories</a>
-        <a class="rubik bold" href="faq.php">AVIS</a>
+        <a class="rubik bold" href="faq.php">Avis</a>
         <div class="flex-column">
-            <a class="rubik bold" href="login.php">LOGIN</a>
-            <a id="sign_up" href="signup.php">SIGN UP</a>
+            <a class="rubik bold" href="login.php">Login</a>
+            <a id="sign_up" href="signup.php">Sign up</a>
         </div>
     </nav>
 </header>
