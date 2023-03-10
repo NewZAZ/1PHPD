@@ -8,10 +8,16 @@
     <title>Flixify</title>
 </head>
 <body>
-<?php include("header.php"); ?>
+<?php
+
+include("header.php"); ?>
 <div id="search">
-    <label>Recherchez votre film ici !</label><br>
-    <input type="search" id="input-search" placeholder="Recherchez votre film">
+    <form method="get">
+        <label>Recherchez votre film ici !</label><br>
+        <input type="search" id="input-search" name="search" placeholder="Recherchez votre film">
+        <input type="submit" id="input-submit" name="submit_search">
+    </form>
+
 </div>
 <main>
     <article id="site-presentation">
@@ -44,4 +50,23 @@
 </main>
 </body>
 </html>
+
+<?php
+include "config.php";
+
+if (!isset($db)) return;
+if(isset($_GET['submit_search'])){
+    $search = $_GET['search'];
+
+    $query = $db->prepare("SELECT * FROM movies WHERE name LIKE '%$search%'");
+    $query->execute();
+
+    $all = $query->fetchAll();
+
+    foreach ($all as $row){
+        echo "<div>
+                    $row[name]
+                </div>";
+    }
+}
 

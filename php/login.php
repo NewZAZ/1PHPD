@@ -21,7 +21,7 @@
             <input type="password" required name="password">
             <label>Mot de passe</label>
         </div>
-        <input type="submit" class="btn" name="submit" value="Se connecter">
+        <input type="submit" class="btn" name="submit">Se connecter</input>
     </form>
 </div>
 </body>
@@ -31,7 +31,6 @@
 <?php
 include("config.php");
 if (!isset($db)) return;
-session_start();
 
 if(isset($_POST["submit"])){
 
@@ -39,28 +38,26 @@ if(isset($_POST["submit"])){
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $password_hash = password_hash($password, PASSWORD_BCRYPT);
-
-    print_r($password_hash);
-
     $query = $db->prepare("SELECT * FROM users WHERE mail='$email'");
     $query->setFetchMode(PDO::FETCH_ASSOC);
     $query->execute();
 
     $result = $query->fetchAll();
 
+
     if(count($result) == 0){
-        echo "<p>Le compte n'éxiste pas</p";
+        echo "<p>Le compte n''existe pas</p";
         return;
     }
 
-    //TODO VERIFY PASSWORD
 
-    $_SESSION['login_user'] = $email;
+    if(password_verify($password, $result[0]['password'])){
+        $_SESSION['logged_in'] = true;
 
-    header("Location: index.php");
+        header("Location: index.php");
+    }
+
+
 }
 
-
-?>
 
