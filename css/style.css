@@ -8,6 +8,7 @@ a{
     text-decoration: none;
     color: white;
 }
+
 /* Police Creation */
 @font-face{
     font-family: 'Rubik';
@@ -21,6 +22,7 @@ a{
     font-family: 'Hubballi';
     src: url(../font/Hubballi-Regular.ttf);
 }
+
 /* Nav */
 nav{
     display: flex;
@@ -50,6 +52,7 @@ nav{
     display: flex;
     flex-direction: column;
 }
+
 /* Header */
 header{
     height: 55vh;
@@ -70,6 +73,8 @@ header{
     width: fit-content;
     height: fit-content;
     position: relative;
+    display: flex;
+    text-align: center;
 }
 .input-search{
     height: 50px;
@@ -100,7 +105,7 @@ header{
     border-bottom:1px solid rgba(255,255,255,.5);
     transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
 }
-input[type="submit"] {
+#send {
     font-family: 'Rubik';
     font-size: 15px;
     width: 90px;
@@ -112,6 +117,13 @@ input[type="submit"] {
     color: #fff;
     background: transparent;
     cursor: pointer;
+} 
+
+/* SEARCH BAR */
+#search{
+    display: flex;
+    justify-content: center;
+    margin-top: 15vh;
 }
 
 /* Top fims */

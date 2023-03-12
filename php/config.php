@@ -15,6 +15,7 @@ $query = $db->prepare("CREATE TABLE IF NOT EXISTS movies (
     author VARCHAR(255),
     price int,
     main_actor VARCHAR(255),
+    image_url VARCHAR(500),
     primary key (id)
 )");
 $query->execute();
@@ -33,9 +34,5 @@ $query = $db->prepare("CREATE TABLE IF NOT EXISTS cart_films (
     CONSTRAINT FK_CartID FOREIGN KEY (id) REFERENCES cart(id),
     CONSTRAINT FK_MovieID FOREIGN KEY (movie_id) REFERENCES movies(id)
 )");
-
-$query->execute();
-
-$query = $db->prepare("INSERT INTO movies(name, author, price, main_actor) VALUES('Pirate', 'test', 100, 'quelqun');");
 $query->execute();
 
