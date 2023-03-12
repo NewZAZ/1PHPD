@@ -10,7 +10,10 @@
         <a href="index.php">
             <h1 id="logo">Flixify</h1>
         </a>
-        <a class="rubik bold">Catégories</a>
+        <form method='get' class="search-box">
+            <input type="text" class="input-search" placeholder="Recherche" name="search">
+            <input type="submit" name="submit">
+        </form>
         <a class="rubik bold" href="faq.php">Avis</a>
         <?php
         session_start();

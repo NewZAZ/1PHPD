@@ -8,21 +8,19 @@
     <title>Flixify</title>
 </head>
 <body>
-<?php
-
-include("header.php"); ?>
-<div id="search">
-    <form method="get">
-        <label>Recherchez votre film ici !</label><br>
-        <input type="search" id="input-search" name="search" placeholder="Recherchez votre film">
-        <input type="submit" id="input-submit" name="submit_search">
-    </form>
-
-</div>
+<?php include("header.php"); ?>
 <main>
     <article id="site-presentation">
         <h2>Présentation du site</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+        <p>Bienvenue sur notre site de location de films en ligne ! Nous sommes ravis de vous proposer une large sélection de films pour tous les goûts et toutes les envies.</p>
+
+        <p>Notre plateforme vous permet de louer des films en quelques clics seulement, sans vous déplacer de chez vous. Vous pouvez ainsi profiter des dernières sorties cinématographiques ainsi que des grands classiques du cinéma, en qualité HD ou même en 4K pour une expérience de visionnage optimale.</p>
+
+        <p>Nous mettons à votre disposition un catalogue complet de films, que ce soit des comédies, des drames, des thrillers, des films d'animation ou encore des films de science-fiction. Vous pouvez également y trouver des séries TV pour les fans de binge-watching.</p>
+
+        <p>Nous vous offrons également la possibilité de louer des films à petit prix, avec des tarifs abordables pour tous les budgets. De plus, notre service de location est disponible 24 heures sur 24 et 7 jours sur 7, pour vous permettre de visionner vos films préférés à tout moment.</p>
+
+        <p>Nous sommes fiers de vous offrir un service de qualité, avec une interface simple et intuitive, une navigation fluide et une expérience utilisateur agréable. Alors n'hésitez plus et rejoignez-nous dès maintenant pour découvrir notre vaste collection de films en ligne !</p>
     </article>
     <section id="top-films">
         <article>
@@ -55,7 +53,7 @@ include("header.php"); ?>
 include "config.php";
 
 if (!isset($db)) return;
-if(isset($_GET['submit_search'])){
+if(isset($_GET['submit'])){
     $search = $_GET['search'];
 
     $query = $db->prepare("SELECT * FROM movies WHERE name LIKE '%$search%'");
@@ -69,4 +67,5 @@ if(isset($_GET['submit_search'])){
                 </div>";
     }
 }
+?>
 

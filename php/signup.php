@@ -33,7 +33,6 @@
 <?php
 include("config.php");
 if (!isset($db)) return;
-session_start();
 
 if(isset($_POST["signup"])){
     $email = $_POST["email"];
@@ -42,7 +41,7 @@ if(isset($_POST["signup"])){
     if($password1 != $password2){
         echo "Mot de passe incorrect";
     }
-    $query = $db->prepare("SELECT * FROM users WHERE mail='$email'");
+    $query = $db->prepare("SELECT * FROM users WHERE email='$email'");
     $query->setFetchMode(PDO::FETCH_ASSOC);
     $query->execute();
 
@@ -54,7 +53,7 @@ if(isset($_POST["signup"])){
     }
     else{
         $password_hash = password_hash($password1, PASSWORD_BCRYPT);
-        $query = $db->prepare("INSERT INTO users(mail, password) VALUES('$email','$password_hash')");
+        $query = $db->prepare("INSERT INTO users(email, password) VALUES('$email','$password_hash')");
         $query->execute();
         echo "<script>alert('Le message a bien été envoyé !');</script>";
     }

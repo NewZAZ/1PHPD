@@ -21,7 +21,7 @@
             <input type="password" required name="password">
             <label>Mot de passe</label>
         </div>
-        <input type="submit" class="btn" name="submit">Se connecter</input>
+        <input type="submit" class="btn" name="submit">
     </form>
 </div>
 </body>
@@ -38,7 +38,7 @@ if(isset($_POST["submit"])){
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $query = $db->prepare("SELECT * FROM users WHERE mail='$email'");
+    $query = $db->prepare("SELECT * FROM users WHERE email='$email'");
     $query->setFetchMode(PDO::FETCH_ASSOC);
     $query->execute();
 
@@ -50,7 +50,6 @@ if(isset($_POST["submit"])){
         return;
     }
 
-
     if(password_verify($password, $result[0]['password'])){
         $_SESSION['logged_in'] = true;
 
@@ -59,5 +58,6 @@ if(isset($_POST["submit"])){
 
 
 }
+?>
 
 
