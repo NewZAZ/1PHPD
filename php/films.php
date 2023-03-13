@@ -103,7 +103,6 @@ echo "</section>";
 
 
 if (!isset($_SESSION['logged_in']) || !isset($_SESSION['userId'])) {
-    print_r("ldkljflksjdlfk");
     return;
 }
 
@@ -128,11 +127,24 @@ if (isset($_GET['action']) && isset($_GET['movie'])) {
 
     $cartProducts = $query->fetchAll();
 
-    if (count($cartProducts) == 0) {
-        echo "<div>
-                <p>Vous n'avez rien dans votre panier !</p>
-              </div>";
-        return;
+    if (count($cartProducts) != 0) {
+        $cartId = $cartProducts[0][1];
+        $query = $db->prepare("SELECT * FROM cart_films WHERE movie_id=$movie AND id=$cartId");
+        $query->execute();
+
+        $movies = $query->fetchAll();
+
+        if(count($movies) != 0){
+            return;
+        }
+
+        $query = $db->prepare("INSERT INTO cart_films VALUES($cartId, $movie)");
+        $query->execute();
+
+        /*$query = $db->prepare("SELECT * FROM cart_films WHERE id=$cartId");
+        $query->execute();
+
+        var_dump($query->fetchAll());*/
     }
 }
 ?>
