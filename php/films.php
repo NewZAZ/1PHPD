@@ -84,7 +84,7 @@ foreach ($all as $row) {
                 <p>Prix : $row[price]</p>
                 
                 <footer>
-                    <button>Acheter</button>
+                    <a href='films.php?action=buy&movie=$row[id]'>Acheter</a>
                 </footer>
                </article>";
 }
@@ -94,4 +94,24 @@ echo "</section>";
 </body>
 </html>
 
+<?php
+
+$action = $_GET['action'];
+$movie = $_GET['movie'];
+if(isset($action) && isset($movie)){
+    $action = htmlspecialchars($action);
+    $movie = htmlspecialchars($movie);
+
+    $query = $db->prepare("SELECT id FROM movies WHERE id=$movie");
+    $query->execute();
+
+    $all = $query->fetchAll();
+
+    if(count($all) == 0){
+        return;
+    }
+
+    $query = $db->prepare();
+}
+?>
 

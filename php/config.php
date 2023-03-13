@@ -33,7 +33,7 @@ $query = $db->prepare("CREATE TABLE IF NOT EXISTS cart (
     id int auto_increment,
     cart_film int,
     CONSTRAINT FK_UserID FOREIGN KEY (id) REFERENCES users(id),
-    CONSTRAINT FK_MovieID FOREIGN KEY (cart_film) REFERENCES movies(id)
+    CONSTRAINT FK_MovieID FOREIGN KEY (cart_film) REFERENCES cart_films(id)
 )");
 $query->execute();
 
