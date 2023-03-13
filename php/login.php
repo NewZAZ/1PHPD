@@ -52,6 +52,7 @@ if(isset($_POST["submit"])){
 
     if(password_verify($password, $result[0]['password'])){
         $_SESSION['logged_in'] = true;
+        $_SESSION['userId'] = $result[0]['id'];
 
         header("Location: index.php");
     }
