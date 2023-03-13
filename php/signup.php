@@ -55,6 +55,19 @@ if(isset($_POST["signup"])){
         $password_hash = password_hash($password1, PASSWORD_BCRYPT);
         $query = $db->prepare("INSERT INTO users(email, password) VALUES('$email','$password_hash')");
         $query->execute();
+
+        $query = $db->prepare("SELECT * FROM users WHERE email='$email'");
+        $query->execute();
+
+        $userId = $query->fetchAll();
+
+        print_r($userId[0][0][0]);
+
+        $id = $userId[0][0];
+
+        $query = $db->prepare("INSERT INTO cart VALUES($id, 0)");
+        $query->execute();
+
         echo "<script>alert('Le message a bien été envoyé !');</script>";
     }
 }

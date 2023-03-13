@@ -96,22 +96,41 @@ echo "</section>";
 
 <?php
 
-$action = $_GET['action'];
-$movie = $_GET['movie'];
-if(isset($action) && isset($movie)){
-    $action = htmlspecialchars($action);
-    $movie = htmlspecialchars($movie);
+
+if (!isset($_SESSION['logged_in']) || !isset($_SESSION['userId'])) {
+    print_r("ldkljflksjdlfk");
+    return;
+}
+
+$userId = $_SESSION['userId'];
+
+if (isset($_GET['action']) && isset($_GET['movie'])) {
+    $action = htmlspecialchars($_GET['action']);
+    $movie = htmlspecialchars($_GET['movie']);
 
     $query = $db->prepare("SELECT id FROM movies WHERE id=$movie");
     $query->execute();
 
-    $all = $query->fetchAll();
+    $moviesIds = $query->fetchAll();
 
-    if(count($all) == 0){
+    if (count($moviesIds) == 0) {
         return;
     }
 
-    $query = $db->prepare();
+    $query = $db->prepare("SELECT * FROM cart WHERE id=$userId");
+
+    $query->execute();
+
+    $cartProducts = $query->fetchAll();
+
+    if (count($cartProducts) == 0) {
+        echo "<div>
+                <p>Vous n'avez rien dans votre panier !</p>
+              </div>";
+        return;
+    }
+
+
 }
 ?>
 
