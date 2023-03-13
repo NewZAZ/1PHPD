@@ -80,3 +80,62 @@ header{
 .align-center{
     text-align: center;
 }
+/* Responsive header */
+@media screen and (max-width: 800px ) {
+    nav{
+        font-size:30px;
+    }
+    #logo{
+        font-size: 70px
+    }
+    #site-presentation{
+        font-size: medium;
+    }
+    
+}
+@media screen and (max-width: 700px ) {
+    header{
+        height:40vh
+    }
+    #logo{
+        font-size: 50px;
+    }
+    
+}
+@media screen and (max-width: 600px ) {
+    #top-films{
+        flex-direction: column;
+    }
+    nav{
+        flex-direction: column;
+    }
+    header{
+        display: flex;
+        justify-content: center;
+    }
+    #site-presentation{
+        font-size: small;
+    }
+    
+}
+@media screen and (max-width: 500px ) {
+    header{
+        height: 20vh;
+    }
+    nav{
+        font-size: small;
+    }
+    #logo{
+        font-size: 30px;
+    }
+    #site-presentation{
+        font-size: x-small;
+    }
+    
+}
+@media screen and (max-width: 300px ) {
+    #site-presentation{
+        font-size: xx-small;
+    }
+    
+}

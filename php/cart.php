@@ -9,6 +9,7 @@
     <title>Flixify | Panier</title>
 </head>
 <body>
+    <?php include "header.php"?>
     
 </body>
 </html>
