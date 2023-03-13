@@ -48,24 +48,3 @@
 </main>
 </body>
 </html>
-
-<?php
-include "config.php";
-
-if (!isset($db)) return;
-if(isset($_GET['submit'])){
-    $search = $_GET['search'];
-
-    $query = $db->prepare("SELECT * FROM movies WHERE name LIKE '%$search%'");
-    $query->execute();
-
-    $all = $query->fetchAll();
-
-    foreach ($all as $row){
-        echo "<div>
-                    $row[name]
-                </div>";
-    }
-}
-?>
-

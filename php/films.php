@@ -9,19 +9,89 @@
     <title>Flixify | Films</title>
 </head>
 <body>
-    <?php include "header.php"?>
-    <form method='get' class="search-box">
-        <input type="text" class="input-search" placeholder="Recherche" name="search">
-        <select id="menu-deroulant">
-            <option value="tout" class="cellule">Tout les films</option>
-            <option value="drame" class="cellule">Drame</option>
-            <option value="guerre" class="cellule">Guerre</option>
-            <option value="aventure" class="cellule">Aventure</option>
-            <option value="action" class="cellule">Action</option>
-            <option value="fantastique" class="cellule">Fantastique</option>
-            <option value="comedie" class="cellule">Comédie</option>
-        </select>
-        <input type="submit" name="submit" id="send">
-    </form>
+
+<?php include "header.php" ?>
+<?php
+
+echo "<form method='get' class='search-box''>";
+echo "<input type='text' class='input-search' placeholder='Recherche' name='search'>";
+
+echo "<select id='menu-deroulant' name='select'>";
+
+
+include "config.php";
+
+if (!isset($db)) return;
+
+
+$query = $db->prepare("SELECT * FROM categories");
+
+$query->execute();
+
+
+$data = $query->fetchAll();
+
+echo "<option value='tout' class='cellule' selected>Tout les films</option>";
+
+foreach ($data as $row) {
+    echo "<option value='$row[categoryName]' class='cellule'> $row[categoryName] </option>";
+}
+
+
+echo "</select>";
+echo "<input type='submit' name='submit' id='send''>";
+echo "</form>"
+?>
+
+<?php
+include "config.php";
+
+if (!isset($db)) return;
+$search = '';
+$select = 'tout';
+if (!empty($_GET['search'])) {
+    $search = $_GET['search'];
+}
+
+if (!empty($_GET['select'])) {
+    $select = $_GET['select'];
+}
+if (!isset($select)) {
+    return;
+}
+$query;
+if ($select == 'tout') {
+    $query = $db->prepare("SELECT * FROM movies WHERE name LIKE '%$search%'");
+
+} else {
+    $query = $db->prepare("SELECT * FROM movies WHERE name LIKE '%$search%' AND category = '$select'");
+}
+
+
+$query->execute();
+
+$all = $query->fetchAll();
+
+echo "<section class='wrapper'>";
+
+foreach ($all as $row) {
+    echo "<article class='flex-column size-article align-center rubik'>
+
+                <img class='size-img' src=$row[image_url]>
+                
+                <p>Réaliser par : $row[author]</p>
+                <p>Avec : $row[main_actor]</p>
+                <p>Prix : $row[price]</p>
+                
+                <footer>
+                    <button>Acheter</button>
+                </footer>
+               </article>";
+}
+
+echo "</section>";
+?>
 </body>
 </html>
+
+
