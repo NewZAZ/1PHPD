@@ -18,3 +18,33 @@
     font-size: large;
     line-height: 1.5;
 }
+@media screen and (max-width: 700px) {
+    .name{
+        font-size: large;
+    }
+    .texte{
+        font-size: medium;
+    }
+    #container-avis{
+        margin: 5% 10%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .name{
+        font-size:medium;
+    }
+    .texte{
+        font-size: small;
+    }
+}
+@media screen and (max-width: 700px) {
+    .name{
+        font-size: small;
+    }
+    .texte{
+        font-size: x-small;
+    }
+    #container-avis{
+        margin: 2% 6%;
+    }
+}

@@ -84,11 +84,16 @@ header{
     margin-top: 10%;
     color: white;
     font-family: 'Rubik';
+    margin-bottom: 10%;
 }
 .align-center{
     text-align: center;
 }
-/* Responsive header */
+.top-film-img{
+    border-radius:10px;
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5) , -15px -15px 15px rgba(0, 0, 0, 0.5);
+}
+/* Responsive header et index */
 @media screen and (max-width: 800px ) {
     nav{
         font-size:30px;
@@ -98,6 +103,9 @@ header{
     }
     #site-presentation{
         font-size: medium;
+    }
+    #top-films{
+        flex-direction: column;
     }
     
 }
