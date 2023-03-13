@@ -54,6 +54,16 @@ if(isset($_POST["submit"])){
         $_SESSION['logged_in'] = true;
         $_SESSION['userId'] = $result[0]['id'];
 
+        $query = $db->prepare("SELECT * FROM cart WHERE id=$_SESSION[userId]");
+
+        $query->execute();
+
+        $cartProducts = $query->fetchAll();
+
+        $_SESSION['cartId'] = $cartProducts[0][1];
+
+
+
         header("Location: index.php");
     }
 

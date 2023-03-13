@@ -50,14 +50,16 @@ if (!isset($db)) return;
 $search = '';
 $select = 'tout';
 $sql = 'SELECT * FROM movies';
+$hasWhere = false;
 if (!empty($_GET['search'])) {
     $search = $_GET['search'];
     $query = $db->prepare("SELECT * FROM movies WHERE name LIKE '%$search%'");
+    $hasWhere = true;
     $query->execute();
     $data = $query->fetchAll();
-    if(count($data) > 0){
+    if (count($data) > 0) {
         $sql = "SELECT * FROM movies WHERE name LIKE '%$search%'";
-    }else{
+    } else {
         $sql = "SELECT * FROM movies WHERE author LIKE '%$search%'";
     }
 }
@@ -69,8 +71,13 @@ if (!isset($select)) {
 }
 $query = $db->prepare($sql);
 if ($select != 'tout') {
-    $query = $db->prepare("$sql AND category = '$select'");
-} 
+    if($hasWhere){
+        $query = $db->prepare("$sql AND category = '$select'");
+    }else{
+        $query = $db->prepare("$sql WHERE category = '$select'");
+    }
+
+}
 
 $query->execute();
 
@@ -89,7 +96,7 @@ foreach ($all as $row) {
                 <p>Prix : $row[price]$</p>
                 
                 <footer>
-                    <a href='films.php?action=buy&movie=$row[id]'>Acheter</a>
+                    <a href='cart.php?action=buy&movie=$row[id]'>Acheter</a>
                 </footer>
             </article>";
 }
@@ -99,53 +106,5 @@ echo "</section>";
 </body>
 </html>
 
-<?php
 
-
-if (!isset($_SESSION['logged_in']) || !isset($_SESSION['userId'])) {
-    return;
-}
-
-$userId = $_SESSION['userId'];
-
-if (isset($_GET['action']) && isset($_GET['movie'])) {
-    $action = htmlspecialchars($_GET['action']);
-    $movie = htmlspecialchars($_GET['movie']);
-
-    $query = $db->prepare("SELECT id FROM movies WHERE id=$movie");
-    $query->execute();
-
-    $moviesIds = $query->fetchAll();
-
-    if (count($moviesIds) == 0) {
-        return;
-    }
-
-    $query = $db->prepare("SELECT * FROM cart WHERE id=$userId");
-
-    $query->execute();
-
-    $cartProducts = $query->fetchAll();
-
-    if (count($cartProducts) != 0) {
-        $cartId = $cartProducts[0][1];
-        $query = $db->prepare("SELECT * FROM cart_films WHERE movie_id=$movie AND id=$cartId");
-        $query->execute();
-
-        $movies = $query->fetchAll();
-
-        if(count($movies) != 0){
-            return;
-        }
-
-        $query = $db->prepare("INSERT INTO cart_films VALUES($cartId, $movie)");
-        $query->execute();
-
-        /*$query = $db->prepare("SELECT * FROM cart_films WHERE id=$cartId");
-        $query->execute();
-
-        var_dump($query->fetchAll());*/
-    }
-}
-?>
 

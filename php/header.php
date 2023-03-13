@@ -14,6 +14,7 @@
         <a class="rubik bold" href="faq.php">Avis</a>
         <?php
         session_start();
+
         if (!isset($_SESSION['logged_in'])) {
             echo " <div class='flex-column'>
                         <a class='rubik bold' href='login.php'>Login</a>
