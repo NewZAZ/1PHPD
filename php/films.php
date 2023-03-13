@@ -39,7 +39,7 @@ foreach ($data as $row) {
 
 
 echo "</select>";
-echo "<input type='submit' name='submit' id='send''>";
+echo "<input type='submit' name='submit' id='send' value='Rechercher'>";
 echo "</form>"
 ?>
 
@@ -49,24 +49,28 @@ include "config.php";
 if (!isset($db)) return;
 $search = '';
 $select = 'tout';
+$sql = 'SELECT * FROM movies';
 if (!empty($_GET['search'])) {
     $search = $_GET['search'];
+    $query = $db->prepare("SELECT * FROM movies WHERE name LIKE '%$search%'");
+    $query->execute();
+    $data = $query->fetchAll();
+    if(count($data) > 0){
+        $sql = "SELECT * FROM movies WHERE name LIKE '%$search%'";
+    }else{
+        $sql = "SELECT * FROM movies WHERE author LIKE '%$search%'";
+    }
 }
-
 if (!empty($_GET['select'])) {
     $select = $_GET['select'];
 }
 if (!isset($select)) {
     return;
 }
-$query;
-if ($select == 'tout') {
-    $query = $db->prepare("SELECT * FROM movies WHERE name LIKE '%$search%'");
-
-} else {
-    $query = $db->prepare("SELECT * FROM movies WHERE name LIKE '%$search%' AND category = '$select'");
-}
-
+$query = $db->prepare($sql);
+if ($select != 'tout') {
+    $query = $db->prepare("$sql AND category = '$select'");
+} 
 
 $query->execute();
 
@@ -78,15 +82,16 @@ foreach ($all as $row) {
     echo "<article class='flex-column size-article align-center rubik'>
 
                 <img class='size-img' src=$row[image_url]>
-                
-                <p>Réaliser par : $row[author]</p>
+                <a href='http://localhost/eval_phpd/php/films.php?search=$row[author]&select=tout&submit=Rechercher' name='$row[author]'>
+                    <p>Réaliser par : $row[author]</p>
+                </a>
                 <p>Avec : $row[main_actor]</p>
-                <p>Prix : $row[price]</p>
+                <p>Prix : $row[price]$</p>
                 
                 <footer>
                     <a href='films.php?action=buy&movie=$row[id]'>Acheter</a>
                 </footer>
-               </article>";
+            </article>";
 }
 
 echo "</section>";
@@ -111,7 +116,7 @@ if(isset($action) && isset($movie)){
         return;
     }
 
-    $query = $db->prepare();
+    // $query = $db->prepare();
 }
 ?>
 

@@ -1,0 +1,17 @@
+#trash{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+.cart_element{
+    display: flex;
+    flex-direction: row;
+}
+.cart_txt{
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+}
+.cart_img{
+    margin:20px 10px;
+}
