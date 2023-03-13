@@ -87,7 +87,7 @@ echo "<section class='wrapper'>";
 
 foreach ($all as $row) {
     echo "<article class='flex-column size-article align-center rubik'>
-                <a href=''>
+                <a href='film1.php?movie_id=$row[id]'>
                     <img class='size-img' src=$row[image_url]>
                 </a>
                 <a href='http://localhost/eval_phpd/php/films.php?search=$row[author]&select=tout&submit=Rechercher' name='$row[author]'>

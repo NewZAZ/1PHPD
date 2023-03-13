@@ -24,23 +24,23 @@
     </article>
     <section id="top-films">
         <article>
-            <img src="images/avatar.jpg" alt="avatar">
+            <img src="../images/avatar.jpg" alt="avatar">
             <footer class="align-center">
-                <p class="film-title">kjqhzdouicqgoiuycg</p>
+                <p class="film-title">Avatar</p>
                 <p>Réalisé par </p>
             </footer>
         </article>
         <article>
-            <img src="images/spiderman.jpg" alt="spiderman">
+            <img src="../images/spiderman.jpg" alt="spiderman">
             <footer class="align-center">
-                <p class="film-title">kjqhzdouicqgoiuycg</p>
+                <p class="film-title">Spiderman</p>
                 <p>Réalisé par </p>
             </footer>
         </article>
         <article>
-            <img src="images/mylittle.jpg" alt="my little poney">
+            <img src="../images/mylittle.jpg" alt="my little poney">
             <footer class="align-center">
-                <p class="film-title">kjqhzdouicqgoiuycg</p>
+                <p class="film-title">My little poney</p>
                 <p>Réalisé par </p>
             </footer>
         </article>
