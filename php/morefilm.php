@@ -9,17 +9,39 @@
     <title>Flixify | Film</title>
 </head>
 <body>
-    <?php include "header.php" ?>
-    <section class="flex-row">
-        <article>
-            <img src="../images/avatar.jpg" alt="avatar">
-        </article>
-        <aside class="flex-column txt_film">
-            <h1 class="rubik bold white">Titre du film</h1>
-            <p class="rubik">Synopsis: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <p class="rubik">Prix : 10$</p>
-            <button class="add_cart button-1">Ajouter au panier</button>
-        </aside>
-    </section>
+<?php include "header.php" ?>
+<?php
+include "config.php";
+
+if (!isset($db)) return;
+if (!isset($_GET['movie_id'])) {
+    header("Location: films.php");
+    return;
+}
+$movieID = $_GET['movie_id'];
+
+$query = $db->prepare("SELECT * FROM movies WHERE id=$movieID");
+
+$query->execute();
+
+$data = $query->fetch();
+
+$imageUrl = $data['image_url'];
+$title = $data['name'];
+$synopsis = $data['synopsis'];
+$price = $data['price'];
+
+echo "<section class='flex-row'>
+<article>
+<img src=$imageUrl alt=$title>
+</article>
+    <aside class='flex-column txt_film'>
+    <h1 class='flex-column txt_film'>$title</h1>
+    <p class='rubik'>Synopsis : $synopsis</p>
+    <p class='rubik'>Prix : $price$</p>
+            <a class='add_cart button-1' href='cart.php?action=buy&movie=$movieID'>Ajouter au panier</a>
+</aside>
+</section>"
+?>
 </body>
 </html>
