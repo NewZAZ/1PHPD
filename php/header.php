@@ -20,7 +20,11 @@
                         <a id='sign_up' href='signup.php'>Sign up</a>
                     </div>";
         }else{
-            echo "<a class='rubik bold' href='logout.php'>Logout</a>";
+            echo "<div class='flex-column'>
+                    <a class='rubik bold' href='logout.php'>Logout</a>
+                    <a class='rubik bold' href='cart.php'>Mon Panier</a>
+                </div>";
+
         }
         ?>
 
