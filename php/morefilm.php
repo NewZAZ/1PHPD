@@ -31,9 +31,9 @@ $title = $data['name'];
 $synopsis = $data['synopsis'];
 $price = $data['price'];
 
-echo "<section class='flex-row'>
-<article>
-<img src=$imageUrl alt=$title>
+echo "<section class='container-film'>
+<article id='img-container'>
+<img src=$imageUrl alt=$title id='img'>
 </article>
     <aside class='flex-column txt_film'>
     <h1 class='flex-column txt_film'>$title</h1>

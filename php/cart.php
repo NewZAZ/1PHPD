@@ -82,8 +82,7 @@ if (isset($_GET['action']) && isset($_GET['movie'])) {
     $query->execute();
 
     $movies = $query->fetchAll();
-
-
+    
     if (count($movies) != 0) {
         if($action == "remove"){
             $query = $db->prepare("DELETE FROM cart_films WHERE id=$cartId AND movie_id=$movie");
@@ -92,13 +91,10 @@ if (isset($_GET['action']) && isset($_GET['movie'])) {
         }
         return;
     }
-
     if($action == 'buy') {
         $query = $db->prepare("INSERT INTO cart_films VALUES($cartId, $movie)");
         $query->execute();
         header("Location: films.php");
     }
-
-
 }
 ?>
